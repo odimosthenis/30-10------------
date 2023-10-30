@@ -979,6 +979,32 @@ function addWritable(scorer){
     </div>
     <br>
 
+    <div id="penalties">
+        <div class="penalty team1 evenspacing">
+            <div>
+                <span> <b> Ποινές: </b></span>
+                <span class="penaltyName">   obj.team1  </span>
+            </div>
+            <select autocomplete name='penalty'>
+                <option value="-" selected>-</option>
+                <option value="προειδοποίηση για ποινή" >προειδοποίηση για ποινή</option>
+                <option value="εισήγηση για ποινή">εισήγηση για ποινή</option>
+            </select>
+        </div>
+        <div class="penalty team2 evenspacing">
+            <div>
+                <span> <b> Ποινές: </b></span>
+                <span class="penaltyName">  obj.team2  </span>
+            </div>
+            <select autocomplete name='penalty'>
+                <option value="-" selected>-</option>
+                <option value="προειδοποίηση για ποινή">προειδοποίηση για ποινή</option>
+                <option value="εισήγηση για ποινή">εισήγηση για ποινή</option>
+            </select>
+        </div>
+    </div>
+    <br>
+
   <button id="opencomments" class="pointer"> Σχόλια διαιτητή</button>
   <textarea style="display: none" id="comments" name="comments" rows=3 placeholder=" Γράψε μας τα σχόλιά σου! "></textarea>
   <button id="submit" name="submit" class="btn-hover pointer"> Αποστολή </button>
