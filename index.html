@@ -624,12 +624,23 @@ function addCard(){
         <option value="2Κίτρινη">2η Κίτρινη</option>
         <option value="Κόκκινη">Κόκκινη</option>
     </select>
-    <input class="explanation"  placeholder="Αιτιολόγιση..">
+
+    <select name="explanation">
+        <option value="φάουλ εντός φάσης">φάουλ εντός φάσης</option>
+        <option value="φάουλ εκτός φάσης">φάουλ εκτός φάσης</option>
+        <option value="εξύβριση παίκτη">εξύβριση παίκτη</option>
+        <option value="εξύβριση διαιτητή">εξύβριση διαιτητή</option>
+        <option value="βίαιη συμπεριφορά">βίαιη συμπεριφορά</option>
+        <option value="other">Αλλο</option>
+    </select>
+    <input class="other_explanation" size="10" placeholder="Αιτία.." style="display:none">
+
+
     </div>
     <button class="remove pointer"></button>
     `;
     newcard.querySelector('.remove').addEventListener('click',()=>remove(newcard))
-    addWritable(newcard)
+    addWritableCard(newcard)
     document.querySelector('#kartes').appendChild(newcard)
 }
 
@@ -768,6 +779,21 @@ function getimgUrlData(file){
     })
 }
 
+function addWritableCard(card){
+    let selection =  card.querySelector('select[name="explanation"]');
+    selection.addEventListener('change',()=>{
+    console.log('change')
+      if (selection.value=='other'){
+          let inpt = selection.nextElementSibling;
+          inpt.style.display = 'inline-block';
+      } else {
+          let inpt = selection.nextElementSibling;
+          inpt.style.display = 'inline-block';
+          inpt.style.display = 'none';
+      }
+  })
+}
+
 function addWritable(scorer){
   let selection =  scorer.querySelector('select');
   selection.addEventListener('change',()=>{
@@ -896,7 +922,6 @@ function addWritable(scorer){
             
             <select autocomplete name='fairPlay'>
                 <option value="-" selected>-</option>
-                <option value="-1">-1</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -912,7 +937,6 @@ function addWritable(scorer){
             </div>
             <select autocomplete name='fairPlay'>
                 <option value="-" selected>-</option>
-                <option value="-1">-1</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -932,7 +956,7 @@ function addWritable(scorer){
             </div>
             
             <select autocomplete name='delay'>
-                <option value="0" selected>0</option>
+                <option value="0" selected>0'</option>
                 <option value="5">5'</option>
                 <option value="10">10'</option>
                 <option value="15">15'</option>
@@ -945,7 +969,7 @@ function addWritable(scorer){
                 <span class="delayName">  obj.team2  </span>
             </div>
             <select autocomplete name='delay'>
-                <option value="0" selected>0</option>
+                <option value="0" selected>0'</option>
                 <option value="5">5'</option>
                 <option value="10">10'</option>
                 <option value="15">15'</option>
