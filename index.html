@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      .prob{
+    font-size: 20px;
+  }
+.invisible{
+    display: none;
+}
+
+/* Variables */
+:root{
+--primary-green: #79c143;
+--primary-blue: #6ec499;
+--secondary-green: #23a455;
+}
+
+/* reset */
+*{
+margin: 0;
+padding: 0;
+}
+
+body{
+font-size: 15px;
+margin:0;
+padding:0;
+}
+
+/* base styles */
+#banner{
+background-image: linear-gradient(
+    180deg,var(--primary-green) 10%,var(--primary-blue) 100%);
+    border-radius: 3px 3px 0 0;
+    padding: 10px;
+    text-align: center;
+}
+
+#banner img{
+width: 50%;
+height: auto;
+display: inline-block;
+}
+
+fieldset{
+padding: 0 20px;
+border: none;
+}
+
+h1{
+text-align: center;
+padding: 3% 0 2% 0;
+margin-bottom: 4%;
+border-bottom: 1px solid black;
+font-size: 1.3em;
+}
+
+
+#score input[type="text"]{
+width: 20px;
+border: 1px solid gray;
+border-radius: 5px;
+padding: 6px 5px 6px 10px;
+box-shadow: inset 1px 1px 3px 1px rgba(0,0,0,0.41);
+}
+
+.evenspacing{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team{
+    margin: 5px;
+}
+
+select {
+    max-width: 150px;
+}
+
+#score span{
+    display: none;
+}
+
+h3{
+font-size: 1em;
+text-align: center;
+margin: 4% 0 2% 0;
+}
+
+.photo{
+margin: 4px 0;
+}
+
+.photo > div {
+display: flex;
+flex-wrap: wrap;
+}
+
+.photo input[name="file"]{
+    max-width: 120px;
+}
+
+
+
+.photo label{
+    margin-right: 5px;
+    background-color:  var(--secondary-green); /* Green */
+    border: 1px solid black;
+    border-radius: 3px;
+    color: white;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.photo select{
+    max-width: 200px;
+}
+
+.photo > div{
+    display: flex;
+    align-items: center;
+}
+
+.preview{
+max-height: 100px;
+max-width: 150px;
+}
+
+.previews{
+    text-align: start;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap:5px;
+    justify-content: space-evenly;
+}
+
+.previews img{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 2px;
+}
+
+.addbtn{
+color: white;
+position: relative;
+/* margin: 1% auto 2%;*/
+font-size: 17px;
+padding: 2px 6px 0;
+border-radius: 7px;
+display: block;
+border-left:2px solid rgb(130,130,130) ;
+border-top: 2px solid rgb(130,130,130);
+border-bottom: 2px solid rgb(27, 27, 27);
+border-right: 2px solid rgb(43, 43, 43);
+background-color: var(--secondary-green);
+}
+
+.addbtn:hover{
+filter: brightness(91%)
+}
+
+input[name="goals"]{
+    width: 15px;
+    border: 1px solid gray;
+    border: 0;
+    border-radius: 3px;
+    padding: 5px 10px;
+    box-shadow: inset 1px 1px 3px 1px rgb(0 0 0 / 41%);
+}
+
+.formcont{
+    margin: 5px 0;
+    padding: 5px 2px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px 0px rgb(0 0 0 / 55%)
+}
+
+.remove{
+    border: none;
+    width: 30px;
+    height: 30px;
+    background-image: url(https://w7.pngwing.com/pngs/28/52/png-transparent-button-computer-icons-cancel-button-logo-sign-internet-thumbnail.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.cardones{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.ball{
+    width: 20px;
+    height: 20px;
+}
+
+.yellow{
+    box-shadow: -2px 2px 0px black;
+    display: inline-block;
+    background-color: yellow;
+    width: 15px;
+    height: 20px;
+}
+
+.red{
+    box-shadow: -2px 2px 0px black;
+    display: inline-block;
+    background-color: red;
+    width: 15px;
+    height: 20px;
+}
+
+.fairPlay{
+    margin-bottom: 5px;
+}
+
+button#opencomments{
+    margin: 0 auto;
+    display: block;
+    padding: 5px;
+    width: 80%;
+    box-shadow: 0px 3px 5px -2px #000000, 2px 2px 3px 2px rgba(0,0,0,0);    
+
+}
+
+
+textarea[name="comments"]{
+    padding: 1%;
+    margin: 0 auto;
+    width: 78%;
+}
+
+textarea[name="comments"]::placeholder{
+  font-style: italic;
+}
+#message{
+    margin-bottom: 10px;
+}
+#done{
+    width: 48px;
+    height: 48px;
+    margin: auto;
+}
+
+#error{
+    width: 48px;
+    height: 48px;
+    margin: auto;
+}
+
+#load{
+color:  rgb(78, 78, 78);
+border: 1px solid grey;
+border-radius: 3%;
+font-style: italic;
+}
+
+#loader {
+border: 10px solid #f3f3f3;
+border-radius: 50%;
+border-top: 10px solid #3498db;
+border-left: 10px solid #3498db;
+width: 24px;
+height: 24px;
+animation: spin 2s linear infinite;
+margin: 3px auto;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+button[name="submit"]{
+margin: 4% auto 1%;
+font-weight: bold;
+color: rgb(255, 255, 255);
+padding: 15px;
+border-radius: 6%;
+background-color:var(--secondary-green);
+box-shadow: -2px 2px 3px 1px rgba(0,0,0,0.41);
+display: block;
+
+border-left:2px solid rgb(130,130,130) ;
+border-top: 2px solid rgb(130,130,130);
+border-bottom: 2px solid rgb(27, 27, 27);
+border-right: 2px solid rgb(43, 43, 43);
+}
+.btn-hover:hover{
+filter: brightness(110%)
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+#popcontain{
+    position:fixed;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(113, 194, 113, 0.699);
+    z-index: 2;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#pop-up{
+    max-width: 400px;
+    width: 80%;
+    padding: 20px 5px 10px 5px;
+    border-radius: 2px;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 5px 5px 20px 4px rgba(0,0,0,0.75);
+    text-align: center;
+    font-size: 1.3em;
+    border-width: 4px;
+    border-style: solid;
+}
+
+
+
+.btns{
+    margin: 20px 10px 1px 10px;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+#pop-up button{
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+    cursor: pointer;
+}
+
+#pop-up button:hover{
+  background-color: black;
+  color: white;
+}
+
+@media screen and (min-width: 500px) {
+      .form {
+        max-width: 500px;
+        margin: 10px auto;
+        box-shadow: -1px 2px 10px 0px rgba(0,0,0,0.53);
+      border-radius: 3px;
+      text-align: center;
+      }
+
+}
+
+
+    </style>
+<script>
+
+function onInputIntegerValidation(element){
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"]
+        .forEach(event=>{
+            element.addEventListener(event,()=>{
+                if(/^\d*$/.test(element.value) || element.value==''){
+                    if (element.value!='') element.setCustomValidity("");
+                } else {
+                    element.setCustomValidity('must be a positive integer or 0');
+                    element.reportValidity();
+                    element.value=""
+                }
+            })
+        })
+}
+    
+
+function validateScoresSum(data){
+
+    let sum1=0; 
+    let sum2=0;
+
+    const scorers = document.querySelectorAll('.scorer');
+    scorers.forEach(scorer=>{
+        let teamNum = scorer.querySelector('option:checked').parentElement.dataset.teamnum
+        let goals = scorer.querySelector('input[name="goals"]').value;
+        if (scorer.querySelector('option:checked').value=="autogoal"){
+            teamNum = (teamNum==1) ? 2 : 1
+        }
+        if (teamNum==1){
+            sum1+= parseInt(goals);
+        } else if (teamNum==2){
+            sum2+=parseInt(goals);
+        }
+    });
+    // console.log('sum1: ', sum1)
+    // console.log('sum2: ', sum2)
+    let msg ='';
+    
+    if (data.score.team1!=sum1){
+        msg += 'Το Σκορ των <?= obj.team1 ?> δεν συμβαδίζει με τους Scorers που έβαλες <br> '
+    }
+    if (data.score.team2!=sum2){
+        msg+='Το Σκορ των <?= obj.team2 ?> δεν συμβαδίζει με τους Scorers που έβαλες <br>'
+    }
+    if (data.score.team1!=sum1 || data.score.team2!=sum2)
+    msg+= 'Eίσαι σίγουρος ότι θες να τα στείλεις έτσι ; <br>'
+    return msg;
+}
+
+function validate(data, msg){
+
+    // there is score
+    if (data.score.team1==='' || data.score.team2==='' ){
+        console.log('Not score')
+        msg.innerHTML = 'Δεν έχεις συμπληρώσει το αποτέλεσμα των αγώνων!'
+        modepop(true,false,'red')
+        return false;
+    }
+
+      // there is fair play
+      if (data.fairplay.team1==='-' || data.fairplay.team2==='-' ){
+        console.log('Not fairplay')
+        // change the html*
+        msg.innerHTML = 'Δεν έχεις συμπληρώσει το fairplay των ομάδων!'
+        modepop(true,false,'red')
+        return false ;
+    }
+
+    // score compatible with scorers
+    if (!incompatibleScoreAccepted){
+        let scores= validateScoresSum(data)
+        if (scores){
+            msg.innerHTML=scores;
+            nowPop = 'score'
+            modepop(true,true,'yellow');
+            return false;
+        } 
+    }
+
+    // Suggestion
+    // No images
+    modepop(true,true,'yellow')
+    msg.innerHTML = 'Loading..';
+    return true;
+}
+
+function modepop(pop, go, color, back){
+    if(pop) document.querySelector('#popcontain').style.display = "flex"
+    else document.querySelector('#popcontain').style.display = "none"
+
+    if(go){
+        document.querySelector('#go').style.display = "block";
+    } else {
+        document.querySelector('#go').style.display = "none";
+    }
+    document.querySelector('#pop-up').style.borderColor=color;
+    if (back===false) document.querySelector('#back').style.display='none';
+
+}
+
+function imagesNotify(data,msg){
+    if(noImagesAccepted){
+        modepop(false, false)
+        return true;
+    }
+    if (data.images.length==0){
+        nowPop = 'img'
+        msg.innerHTML = 'Δεν έβαλες καμία εικόνα ψήστη μου, είσαι σίγουρος ότι θες να μας στείλεις τα αποτελέσματα χωρίς εικόνες;';
+        modepop(true, true,'yellow')
+        return false;
+    } 
+    return true;
+}
+
+
+    let nowPop = '';
+    let noImagesAccepted=false;
+    let incompatibleScoreAccepted=false;
+
+    window.onload = ()=>{
+
+      document.querySelector("#opencomments").onclick = ()=>{
+        const commentsarea = document.querySelector("textarea[name='comments']");
+        commentsarea.style.display=(commentsarea.style.display=='none') ? 'block' : 'none';
+      } 
+
+      const previewAll = document.querySelectorAll(".preview")
+      const photos = document.querySelectorAll(".photo")
+      photos.forEach( (photo,i)=>{
+        const input = photo.querySelector("input");
+        input.addEventListener('input', function(){
+            previewAll[i].src = URL.createObjectURL(this.files[0])
+            previewAll[i].classList.remove("invisible")
+        })
+      });
+      document.querySelector('#back').addEventListener('click',()=>{
+          modepop(false,false);
+          nowPop='';
+      });
+      document.querySelector('#go').addEventListener('click',()=>{
+          if(nowPop=='img'){
+              noImagesAccepted=true;
+          } else if (nowPop=='score'){
+              incompatibleScoreAccepted=true;
+          };
+          modepop(false,false);
+          document.querySelector('#submit').click();
+      });
+      onInputIntegerValidation(document.querySelector('#team1score'));
+      onInputIntegerValidation(document.querySelector('#team2score'));
+
+
+    document.querySelector('#submit').addEventListener('click', async ()=>{
+        document.querySelector('#loader').style.display = 'none'
+        let msg = document.querySelector('#message');
+        msg.innerHTML = ''
+        let data = await collectData();
+        if(!validate(data, msg)) return;
+        if(!imagesNotify(data, msg)) return;
+        console.log("data: ",data)
+        document.querySelector('#loader').style.display = 'block';
+        modepop(true,false,'grey',false)
+        console.log("deb: ",data.debug)
+        google.script.run.withSuccessHandler(success).withFailureHandler(error).getForm(data);
+        function success(res){ 
+          if (res=='Fail'){
+            error('Ok')
+          } else {
+            document.querySelector('#loader').style.display = 'none';
+            document.querySelector('#done').style.display = 'block';
+            modepop(true,false,'#32CD32', false)
+            document.querySelector('#back').style.display = 'none'
+            msg.innerHTML='Όλα κομπλέ, ευχαριστούμε!'
+        };
+        function error(res){ 
+            document.querySelector('#loader').style.display = 'none';
+            document.querySelector('#error').style.display = 'block';
+            modepop(true,false,'red', false)
+            document.querySelector('#back').style.display = 'none'
+            msg.innerHTML='Κάτι πήγε λάθος μύστη μου. <br>Επικοινώνησε μαζί μας!'
+        };
+          }
+
+    });
+
+    document.querySelector('#addscorer').addEventListener('click',()=>{
+        addScorer()
+    });
+
+    document.querySelector('#addkarta').addEventListener('click',()=>{
+        addCard()
+    });
+
+}
+
+function addScorer(){
+    const newscorer = document.createElement('div');
+    newscorer.classList.add('scorer', 'evenspacing','formcont')
+    newscorer.innerHTML = 
+    `
+    <div>
+        <select name="player">
+        <option value="" >- </option>
+        <optgroup label="<?= obj.team1 ?>" data-teamnum='1'>
+          <? obj.players1.forEach(p=>{ ?>
+            <option value="<?=p.trim()?>"><?=p.trim()?> (<?= obj.team1 ?>)</option>
+          <? }) ?>
+            <option value="autogoal">Αυτογκόλ  (<?= obj.team1 ?>)</option>
+            <option value="other" >Άλλος (<?= obj.team1 ?>)</option>
+        </optgroup>
+        <optgroup label="<?= obj.team2 ?>" data-teamnum='2'>
+            <? obj.players2.forEach(p=>{ ?>
+            <option value="<?=p.trim()?>"><?=p.trim()?> (<?= obj.team2 ?>) </option>
+          <? }) ?>
+            <option value="autogoal">Αυτογκόλ (<?= obj.team2 ?>)</option>
+            <option value="other">Άλλος (<?= obj.team2 ?>)</option>
+        </optgroup>
+        </select>
+        <input class="newplayer" size="10" placeholder="Όνομα.." style="display:none">
+        <label for="goals">Goals</label>
+        <input type="text" name="goals" min="0" step="1" maxlength="2" size="2" value=1 >
+      </div>
+      <button class="remove pointer"></button>
+    `;
+    newscorer.querySelector('.remove').addEventListener('click',()=>remove(newscorer))
+    document.querySelector('#scorers').appendChild(newscorer)
+    addWritable(newscorer)
+    const inpt = newscorer.querySelector('input[name="goals"]');
+    onInputIntegerValidation(inpt)
+}
+
+function addCard(){
+    const newcard = document.createElement('div');
+    newcard.classList.add('karta','evenspacing','formcont')
+    newcard.innerHTML = 
+    `
+    <div>
+    <select name="player">
+    <option value="" >- </option>
+    <optgroup label="<?= obj.team1 ?>">
+        <? obj.players1.forEach(p=>{ ?>
+        <option value="<?=p.trim()?>"><?=p.trim()?></option>
+      <? }) ?>
+        <option value="other" >Άλλος (<?= obj.team1 ?>)</option>
+    </optgroup>
+    <optgroup label="<?= obj.team2 ?>">
+        <? obj.players2.forEach(p=>{ ?>
+        <option value="<?=p.trim()?>"><?=p.trim()?></option>
+      <? }) ?>
+        <option value="other">Άλλος (<?= obj.team2 ?>)</option>
+    </optgroup>
+    </select>
+    <input class="newplayer" size="10" placeholder="Όνομα.." style="display:none">
+
+    <select name="karta">
+        <option value="Κίτρινη">Κίτρινη</option>
+        <option value="2Κίτρινη">2η Κίτρινη</option>
+        <option value="Κόκκινη">Κόκκινη</option>
+    </select>
+    <input class=""  placeholder="Αιτιολόγιση..">
+    </div>
+    <button class="remove pointer"></button>
+    `;
+    newcard.querySelector('.remove').addEventListener('click',()=>remove(newcard))
+    addWritable(newcard)
+    document.querySelector('#kartes').appendChild(newcard)
+}
+
+function remove(element){
+    element.remove()
+}
+
+async function collectData(){
+    // score
+    const score = {
+        team1: document.querySelector('#team1score').value, 
+        team2: document.querySelector('#team2score').value
+    }
+    
+
+    // get photos names
+    const photoNames = document.querySelectorAll('select[name="photo_name"]')
+    // imgs
+    let images = [];
+    let imagesinput= document.querySelectorAll('.photo input')
+    let imagesPromises = []
+    imagesinput.forEach( imageinput =>{
+            if (imageinput.files[0]){
+                imagesPromises.push( getimgUrlData(imageinput.files[0]));
+            }
+    })
+    if (imagesPromises.length>0){
+        await Promise.all(imagesPromises).then(datas =>{
+            datas.forEach((data,i)=>{
+                images.push({
+                    name: photoNames[i].value,
+                    type:data.type,
+                    data:data.dataURL.split(',')[1]
+                })
+            })
+            
+        })
+    };
+    
+
+
+    // scorers
+    const scorers = [];
+    const scorersEl = document.querySelectorAll('.scorer');
+    scorersEl.forEach( (scorer)=>{
+        let name = scorer.querySelector('select[name="player"]' ).value
+        if(scorer.querySelector('select[name="player"]' ).value=='other'){
+            name = scorer.querySelector('.newplayer').value;
+        }
+        scorers.push({
+            name,
+            goals: scorer.querySelector('input[name="goals"]').value,
+            team: scorer.querySelector('option:checked').parentElement.label
+        });
+        
+    } );
+
+    // kartes
+    const cards = [];
+    const cardsEl = document.querySelectorAll('.karta');
+    cardsEl.forEach( (card)=>{
+        let name = card.querySelector('select[name="player"]' ).value
+        if(card.querySelector('select[name="player"]' ).value=='other'){
+            name = card.querySelector('.newplayer').value;
+        }
+        cards.push({
+            name,
+            kartes: card.querySelector('select[name="karta"]' ).value,
+            team: card.querySelector('option:checked').parentElement.label
+        });
+    } );
+
+    // fair plays
+    const fairplay ={
+        team1: document.querySelector('.fairPlay.team1 select[name="fairPlay"]').value,
+        team2: document.querySelector('.fairPlay.team2 select[name="fairPlay"]').value
+    } 
+
+    // comments
+    const comments = document.querySelector('#comments').value
+
+    return {
+    /*
+      debug: <?= obj.debug ?>,
+      id: <?=obj.id?>,
+      doc_id: <?= obj.doc_id ?>,
+      season: <?= obj.season ?>,
+      team1: <?= obj.team1 ?>,
+      team2: <?= obj.team2 ?>,
+      referee: <?= obj.referee ?>,
+      ghpedo: <?= obj.ghpedo ?>,
+      score, scorers, 
+      cards, fairplay, 
+      comments, 
+      images,
+      date: <?= obj.date ?>, 
+      fulldate:  <?= obj.fulldate?>
+      */
+    };
+}
+
+// let file = document.querySelector('.photo input').files[0];
+function getimgUrlData(file){
+    return new Promise( (resolve)=>{
+        const img = document.createElement('img')
+        const canvas = document.createElement('canvas')
+        let ctx= canvas.getContext('2d');
+        img.onload = ()=>{
+            let aspect_ratio = img.width/ img.height;
+            if (aspect_ratio>1){
+                canvas.width =  (img.width<1920) ? img.width : 1920;
+                canvas.height = canvas.width/aspect_ratio
+            } else{
+                canvas.height =  (img.height<1080) ? img.height : 1080;
+                canvas.width = canvas.height * aspect_ratio;
+            }
+            ctx.drawImage(img,0,0,canvas.width, canvas.height)
+            let canvas_data = canvas.toDataURL(file.type,0.5)
+            let data = canvas_data
+            resolve({
+                dataURL: data, type:file.type
+            })
+        }
+    
+        img.src = URL.createObjectURL(file)
+    })
+}
+
+function addWritable(scorer){
+  let selection =  scorer.querySelector('select');
+  selection.addEventListener('change',()=>{
+      if (selection.value=='other'){
+          let group = selection.querySelector('option:checked').parentElement.label;
+          let inpt = selection.nextElementSibling;
+          inpt.style.display = 'inline-block';
+      } else {
+          let inpt = selection.nextElementSibling;
+          inpt.style.display = 'inline-block';
+          inpt.style.display = 'none';
+      }
+  })
+}
+</script>
+</head>
+<body>
+  <div class="form">
+
+  <div id="banner">
+            <img src="https://mle4cw9qi4xs.i.optimole.com/Kvnqejg.xssd~37b5/w:500/h:153/q:75/https://www.propathlima.gr/wp-content/uploads/2020/12/LIGHT-LOGO-5x5-2-compressed.png" >
+        </div>
+  <fieldset>
+    <h1> Αποτέλεσμα</h1>
+    <div id="score">
+        <div class="team evenspacing">
+            <label for="team1score"><b><?= obj.team1 ?></b></label>
+            <input type="text" id="team1score" name="team1" >
+        </div>
+        <span><b> : </b></span>
+        <div class="team evenspacing">
+            <label for="team2score"><b><?= obj.team2 ?></b></label>
+            <input type="text" id="team2score" name="team2" >
+        </div>
+    </div>
+  
+    <h3>Φωτογραφίες</h3>
+    <div id="photos">
+        <div class="photo">
+                <div>
+                    <input name="file" type="file" id="file1" class="invisible pointer" accept="image/*">
+                    <label for="file1">Add Photo</label>
+                    <!--<input class="pointer" name="file" type="file" accept="image/*">-->
+                    <div>
+                    <select name="photo_name">
+                        <option value="image">Ποια ομάδα είναι στη φωτο;&nbsp</option>
+                            <option value="<?= obj.team1 ?>"><?= obj.team1 ?></option>
+                            <option value="<?= obj.team2 ?>"><?= obj.team2 ?></option>
+                            <option value="<?= obj.team1?> - <?= obj.team2 ?>">Και οι δύο</option>
+                            <option value="image">Άλλο</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="photo">
+                <div>
+                    <input name="file" type="file" id="file2" class="invisible pointer" accept="image/*">
+                    <label for="file2">Add Photo</label>
+                    <div>
+                    <select name="photo_name">
+                        <option value="image">Ποια ομάδα είναι στη φωτο;&nbsp</option>
+                            <option value="<?= obj.team1 ?>"><?= obj.team1 ?></option>
+                            <option value="<?= obj.team2 ?>"><?= obj.team2 ?></option>
+                            <option value="<?= obj.team1?> - <?= obj.team2 ?>">Και οι δύο</option>
+                            <option value="image">Άλλο</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="photo">
+                <div>
+                    <input name="file" type="file" id="file3" class="invisible pointer" accept="image/*">
+                    <label for="file3">Add Photo</label>
+                    <div>
+                    <select name="photo_name">
+                        <option value="image">Ποια ομάδα είναι στη φωτο;&nbsp</option>
+                            <option value="<?= obj.team1 ?>"><?= obj.team1 ?></option>
+                            <option value="<?= obj.team2 ?>"><?= obj.team2 ?></option>
+                            <option value="<?= obj.team1?> - <?= obj.team2 ?>">Και οι δύο</option>
+                            <option value="image">Άλλο</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="previews">
+                <img class="preview invisible" >
+                <img class="preview invisible" >
+                <img class="preview invisible" >
+            </div>
+            
+
+        
+    </div>
+    <br>
+    <div class="evenspacing">
+        <div class="cardones">
+            <span> <b> Πρόσθεσε τους Scorers </b> </span>
+            <img class="ball" src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Emoji_u26bd_transparent.svg">
+        </div>
+        <button id="addscorer" class="addbtn pointer"> <b> + </b> </button>
+    </div>
+    <div id="scorers">
+        
+    </div>
+    <br>
+
+    <div class="evenspacing">
+        <div class="cardones">
+            <span> <b> Πρόσθεσε τις Κάρτες </b> </span>
+            <span class="yellow"></span>
+            <span class="red"></span>      
+        </div>
+
+        <button id="addkarta" class="addbtn pointer"> <b> + </b> </button>
+    </div>
+    
+    <div id="kartes">
+    </div>
+    <br>
+    <div id="fairPlays">
+        <div class="fairPlay team1 evenspacing">
+            <div>
+                <span> <b> Fair Play: </b></span>
+                <span class="fairName">  <?= obj.team1 ?> </span>
+            </div>
+            
+            <select autocomplete name='fairPlay'>
+                <option value="-" selected>-</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="fairPlay team2 evenspacing">
+            <div>
+                <span> <b> Fair Play: </b></span>
+                <span class="fairName"> obj.team2 </span>
+            </div>
+            <select autocomplete name='fairPlay'>
+                <option value="-" selected>-</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+    <br>
+
+    <div id="">
+        <div class="fairPlay team1 evenspacing">
+            <div>
+                <span> <b> Καθυστέρηση: </b></span>
+                <span class="fairName">   obj.team1  </span>
+            </div>
+            
+            <select autocomplete name='fairPlay'>
+                <option value="0" selected>0</option>
+                <option value="5">5'</option>
+                <option value="10">10'</option>
+                <option value="15">15'</option>
+                <option value="15">15'+</option>
+            </select>
+        </div>
+        <div class="fairPlay team2 evenspacing">
+            <div>
+                <span> <b> Καθυστέρηση: </b></span>
+                <span class="fairName">  obj.team2  </span>
+            </div>
+            <select autocomplete name='fairPlay'>
+                <option value="0" selected>0</option>
+                <option value="5">5'</option>
+                <option value="10">10'</option>
+                <option value="15">15'</option>
+                <option value="15">15'+</option>
+            </select>
+        </div>
+    </div>
+
+  <button id="opencomments" class="pointer"> Σχόλια διαιτητή</button>
+  <textarea style="display: none" id="comments" name="comments" rows=3 placeholder=" Γράψε μας τα σχόλιά σου! "></textarea>
+  <button id="submit" name="submit" class="btn-hover pointer"> Αποστολή </button>
+
+</fieldset>
+
+</div>
+
+            
+  <div id="popcontain" >
+      <div id="pop-up">
+          <p id="message"> </p>
+          <div id="loader" style="display:none"></div>
+          <img id="done" style="display:none" src="https://w7.pngwing.com/pngs/775/309/png-transparent-check-mark-cheque-check-miscellaneous-angle-text-thumbnail.png">
+          <img id="error" style="display:none" src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png">
+          <div class="btns">
+              <button id="back" class="pointer"> Πήγαινε πίσω </button>
+              <button id="go" class="pointer" onclick="()=>{noImagesAccepted=true}"> Ναι </button>
+          </div>
+          
+      </div>
+  
+  </div>
+    
+</body>
+</html>

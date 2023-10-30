@@ -1,0 +1,25 @@
+<div>
+    <select name="player">
+    <option value="" >- </option>
+    <optgroup label="<?= obj.team1 ?>">
+        <? obj.players1.forEach(p=>{ ?>
+        <option value="<?=p.trim()?>"><?=p.trim()?></option>
+      <? }) ?>
+        <option value="other" >Άλλος (<?= obj.team1 ?>)</option>
+    </optgroup>
+    <optgroup label="<?= obj.team2 ?>">
+        <? obj.players2.forEach(p=>{ ?>
+        <option value="<?=p.trim()?>"><?=p.trim()?></option>
+      <? }) ?>
+        <option value="other">Άλλος (<?= obj.team2 ?>)</option>
+    </optgroup>
+    </select>
+    <input class="newplayer" size="10" placeholder="Όνομα.." style="display:none">
+
+    <select name="karta">
+        <option value="Κίτρινη">Κίτρινη</option>
+        <option value="2Κίτρινη">2η Κίτρινη</option>
+        <option value="Κόκκινη">Κόκκινη</option>
+    </select>
+</div>
+    <button class="remove pointer"></button>
