@@ -642,6 +642,7 @@ function addCard(){
     <button class="remove pointer"></button>
     `;
     newcard.querySelector('.remove').addEventListener('click',()=>remove(newcard))
+    addWritable(newcard)
     addWritableCard(newcard)
     document.querySelector('#kartes').appendChild(newcard)
 }
