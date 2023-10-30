@@ -218,7 +218,7 @@ input[name="goals"]{
     height: 20px;
 }
 
-.fairPlay{
+.fairPlay, .delay{
     margin-bottom: 5px;
 }
 
@@ -624,7 +624,7 @@ function addCard(){
         <option value="2Κίτρινη">2η Κίτρινη</option>
         <option value="Κόκκινη">Κόκκινη</option>
     </select>
-    <input class=""  placeholder="Αιτιολόγιση..">
+    <input class="explanation"  placeholder="Αιτιολόγιση..">
     </div>
     <button class="remove pointer"></button>
     `;
@@ -698,7 +698,8 @@ async function collectData(){
         cards.push({
             name,
             kartes: card.querySelector('select[name="karta"]' ).value,
-            team: card.querySelector('option:checked').parentElement.label
+            team: card.querySelector('option:checked').parentElement.label,
+            explanation: card.querySelector('.explanation' ).value
         });
     } );
 
@@ -706,6 +707,12 @@ async function collectData(){
     const fairplay ={
         team1: document.querySelector('.fairPlay.team1 select[name="fairPlay"]').value,
         team2: document.querySelector('.fairPlay.team2 select[name="fairPlay"]').value
+    } 
+
+    // delays
+    const delays ={
+        team1: document.querySelector('.delays.team1 select[name="delay"]').value,
+        team2: document.querySelector('.delays.team2 select[name="delay"]').value
     } 
 
     // comments
@@ -726,7 +733,10 @@ async function collectData(){
       comments, 
       images,
       date: <?= obj.date ?>, 
-      fulldate:  <?= obj.fulldate?>
+      fulldate:  <?= obj.fulldate?>,
+
+      delays,
+      hours: obj.hours
       */
     };
 }
@@ -914,14 +924,14 @@ function addWritable(scorer){
     </div>
     <br>
 
-    <div id="">
-        <div class="fairPlay team1 evenspacing">
+    <div id="delays">
+        <div class="delay team1 evenspacing">
             <div>
                 <span> <b> Καθυστέρηση: </b></span>
-                <span class="fairName">   obj.team1  </span>
+                <span class="delayName">   obj.team1  </span>
             </div>
             
-            <select autocomplete name='fairPlay'>
+            <select autocomplete name='delay'>
                 <option value="0" selected>0</option>
                 <option value="5">5'</option>
                 <option value="10">10'</option>
@@ -929,12 +939,12 @@ function addWritable(scorer){
                 <option value="15">15'+</option>
             </select>
         </div>
-        <div class="fairPlay team2 evenspacing">
+        <div class="delay team2 evenspacing">
             <div>
                 <span> <b> Καθυστέρηση: </b></span>
-                <span class="fairName">  obj.team2  </span>
+                <span class="delayName">  obj.team2  </span>
             </div>
-            <select autocomplete name='fairPlay'>
+            <select autocomplete name='delay'>
                 <option value="0" selected>0</option>
                 <option value="5">5'</option>
                 <option value="10">10'</option>
@@ -943,6 +953,7 @@ function addWritable(scorer){
             </select>
         </div>
     </div>
+    <br>
 
   <button id="opencomments" class="pointer"> Σχόλια διαιτητή</button>
   <textarea style="display: none" id="comments" name="comments" rows=3 placeholder=" Γράψε μας τα σχόλιά σου! "></textarea>
